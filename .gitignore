@@ -1,0 +1,17 @@
+*.egg-info
+__pycache__
+dist/
+*.pyc
+.venv/
+.coverage
+coverage.xml
+.vscode/
+.pytest_cache/
+.env
+.devcontainer/
+staticfiles/
+htmlcov/
+.python-version
+*.sqlite3
+*.bak
+*.mo
