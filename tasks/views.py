@@ -1,5 +1,7 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.generic import View
 
 
-def root(request):
-    return HttpResponse('Hello!')
+class IndexPage(View):
+    def get(self, request):
+        return render(request, 'tasks/index.html')

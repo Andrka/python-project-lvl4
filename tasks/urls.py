@@ -3,8 +3,8 @@
 """URL Configuration tasks."""
 
 from django.urls import path
-from . import views
+from .views import IndexPage
 
 urlpatterns = [
-    path('', views.root, name='root'),
+    path('', IndexPage.as_view(), name='index_page'),
 ]

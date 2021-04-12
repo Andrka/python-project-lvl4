@@ -2,15 +2,12 @@ install:
 	poetry install
 
 lint:
-	poetry run flake8 task_manager
+	poetry run flake8 task_manager tasks
 
-test:
-	poetry run pytest --cov=task_manager --cov-report xml tests/
+selfcheck:
+	poetry check
 
-check: lint test
-
-report:
-	poetry run coverage report
+check: selfcheck lint
 
 migrate:
 	poetry run python3 manage.py migrate
