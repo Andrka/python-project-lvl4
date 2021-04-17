@@ -17,3 +17,6 @@ runserver:
 
 requirements:
 	poetry export -f requirements.txt --output requirements.txt
+
+isort:
+	poetry run isort .

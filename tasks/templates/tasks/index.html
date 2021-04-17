@@ -3,9 +3,11 @@
 {% load bootstrap4 %}
 
 {% block title %}
-{% trans "Менеджер задач" %}
+{% trans 'Менеджер задач' %}
 {% endblock %}
 
 {% block content %}
-{% trans "Привет!" %}
+<div class="container wrapper flex-grow-1">
+    <h1>{% trans 'Привет' %}{% if user.is_authenticated %}{% trans ', ' %}{{ user.username }}{% endif %}{% trans '!' %}</h1>
+</div>
 {% endblock %}

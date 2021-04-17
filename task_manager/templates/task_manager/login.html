@@ -1,0 +1,22 @@
+{% extends 'task_manager/base_task_manager.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block title %}
+{% trans 'Вход' %}
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1>{% trans 'Вход' %}</h1>
+    {% if error %}
+        <div>{{ error }}</div>
+    {% endif %}
+    <form method="post" >
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Имя пользователя">
+        <input type="password" name="password" placeholder="Пароль">
+        <input type="submit" value="Войти">
+    </form>
+</div>
+{% endblock %}

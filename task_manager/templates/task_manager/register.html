@@ -1,0 +1,18 @@
+{% extends 'task_manager/base_task_manager.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block title %}
+{% trans 'Регистрация' %}
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1>{% trans 'Регистрация' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% trans 'Зарегистрировать' %}</button>
+    </form>
+</div>
+{% endblock %}
