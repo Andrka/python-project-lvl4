@@ -1,7 +1,9 @@
+# -*- coding:utf-8 -*-
+
 from django.shortcuts import render
 from django.views.generic import View
 
 
-class IndexPage(View):
+class IndexView(View):
     def get(self, request):
         return render(request, 'tasks/index.html')

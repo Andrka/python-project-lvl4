@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 """
 Django settings for task_manager project.
 
@@ -26,11 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-DEBUG = os.getenv('DEBUG') != 'False'
+DEBUG = os.environ.get('DEBUG') == 'True'
 
-ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
 
 
 # Application definition
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'task_manager',
+    'users',
     'tasks',
     'bootstrap4',
 ]
@@ -87,7 +90,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL')),
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL')),
 }
 
 

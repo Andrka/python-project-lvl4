@@ -1,4 +1,4 @@
-{% extends 'task_manager/base_task_manager.html' %}
+{% extends 'users/base.html' %}
 {% load i18n %}
 {% load bootstrap4 %}
 
@@ -11,7 +11,7 @@
     <h1>{% trans 'Регистрация' %}</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {% bootstrap_form form %}
         <button type="submit">{% trans 'Зарегистрировать' %}</button>
     </form>
 </div>

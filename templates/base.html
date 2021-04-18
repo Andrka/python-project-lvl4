@@ -6,39 +6,40 @@
 <head>
     <meta charset="UTF-8">
     {% bootstrap_css %}
+    {% bootstrap_jquery %}
+    {% bootstrap_javascript %}
     <title>
         {% block title %}{% endblock %}
     </title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Менеджер задач' %}</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+    <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Менеджер задач' %}</a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarToggleExternalContent">
         <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'users' %}">{% trans 'Пользователи' %}</a>
             </li>
+        </ul>
+        <ul class="navbar-nav">
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">{% trans 'Выход' %}</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">{% trans 'Выход' %}</a>
+            </li>
             {% else %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'login' %}">{% trans 'Вход' %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">{% trans 'Регистрация' %}</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register_user' %}">{% trans 'Регистрация' %}</a>
+            </li>
             {% endif %}
         </ul>
-        <span class="navbar-text"></span>
-        </div>
     </div>
-    </nav>
+</nav>
     <p>{% block content %}{% endblock %}</p>
 </body>
 </html>

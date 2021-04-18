@@ -1,0 +1,18 @@
+{% extends 'users/base.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block title %}
+{% trans 'Удаление пользователя' %}
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1>{% trans 'Удаление пользователя' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{% trans 'Вы уверены, что хотите удалить ' %}{{ user.username }}{% trans '?' %}</p>
+        <button type="submit">{% trans 'Да, удалить' %}</button>
+    </form>
+</div>
+{% endblock %}
