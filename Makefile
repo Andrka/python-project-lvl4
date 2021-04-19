@@ -2,12 +2,18 @@ install:
 	poetry install
 
 lint:
-	poetry run flake8 task_manager tasks
+	poetry run flake8 task_manager tasks users
+
+test:
+	poetry run coverage run --omit '.venv/*' --source='.' manage.py test
 
 selfcheck:
 	poetry check
 
-check: selfcheck lint
+check: selfcheck lint test
+
+coverage-report:
+	poetry run coverage xml
 
 migrate:
 	poetry run python3 manage.py migrate

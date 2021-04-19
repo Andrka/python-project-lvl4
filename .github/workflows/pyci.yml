@@ -21,5 +21,15 @@ jobs:
           pip install poetry
           make install
       - name: Run linter
-        run: |
-          make lint
+        run: make lint
+      - name: Run tests
+        run: make test
+        env:
+          SECRET_KEY: secret
+          DB_ENGINE: SQLite
+      - name: Publish code coverage report
+        uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make coverage-report

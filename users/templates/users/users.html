@@ -25,7 +25,7 @@
                 <td scope="row">{{ user.id }}</th>
                 <td scope="row">{{ user.username }}</td>
                 <td scope="row">{{ user.get_full_name }}</td>
-                <td scope="row">{{ user.date_joined }}</td>
+                <td scope="row">{{ user.date_joined|date:'d-m-Y H:i' }}</td>
                 <td scope="row">
                     <a href="{% url 'update_user' pk=user.id %}">{% trans 'Изменить' %}</a>
                     <br>

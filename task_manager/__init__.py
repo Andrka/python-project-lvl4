@@ -2,4 +2,4 @@
 
 """Task manager."""
 
-from task_manager import settings
+from task_manager import settings  # noqa: F401

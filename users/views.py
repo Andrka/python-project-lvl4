@@ -16,6 +16,12 @@ class UserRegisterView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'users/register.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['headline'] = 'Регистрация'
+        context['button_title'] = 'Зарегистрировать'
+        return context
+
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
@@ -27,9 +33,15 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         obj = self.get_object()
         return obj == self.request.user
-    
+
     def handle_no_permission(self):
         return redirect('users')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['headline'] = 'Изменение пользователя'
+        context['button_title'] = 'Изменить'
+        return context
 
 
 class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -51,7 +63,7 @@ class UsersView(ListView):
     template_name = 'users/users.html'
 
     def get_queryset(self):
-        return User.objects.all()
+        return User.objects.all().order_by('id')
 
 
 class UserLoginView(LoginView):
