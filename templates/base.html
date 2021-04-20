@@ -40,6 +40,11 @@
         </ul>
     </div>
 </nav>
-    <p>{% block content %}{% endblock %}</p>
+    <p>
+    {% include 'messages.html' %}
+
+    {% block content %}
+    {% endblock %}
+    </p>
 </body>
 </html>

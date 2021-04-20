@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+from django.contrib import messages
 from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
@@ -88,18 +89,9 @@ AUTH_PASSWORD_VALIDATORS = [
             'django.contrib.auth.password_validation.'
             'MinimumLengthValidator'
         ),
-    },
-    {
-        'NAME': (
-            'django.contrib.auth.password_validation.'
-            'CommonPasswordValidator'
-        ),
-    },
-    {
-        'NAME': (
-            'django.contrib.auth.password_validation.'
-            'NumericPasswordValidator'
-        ),
+        'OPTIONS': {
+            'min_length': 3,
+        },
     },
 ]
 
@@ -125,3 +117,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
+
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }
