@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'task_manager',
     'users',
     'tasks',
+    'statuses',
     'bootstrap4',
 ]
 

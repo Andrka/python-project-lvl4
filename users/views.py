@@ -7,6 +7,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.translation import gettext
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
@@ -17,12 +18,12 @@ class UserRegisterView(SuccessMessageMixin, CreateView):
     form_class = RegisterForm
     success_url = reverse_lazy('login')
     template_name = 'users/register.html'
-    success_message = 'Пользователь успешно зарегистрирован'
+    success_message = gettext('Пользователь успешно зарегистрирован')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['headline'] = 'Регистрация'
-        context['button_title'] = 'Зарегистрировать'
+        context['headline'] = gettext('Регистрация')
+        context['button_title'] = gettext('Зарегистрировать')
         return context
 
 
@@ -37,9 +38,13 @@ class UserUpdateView(
     template_name = 'users/register.html'
     success_url = reverse_lazy('login')
     login_url = 'login'
-    success_message = 'Пользователь успешно изменён'
-    message_need_login = 'Вы не авторизованы! Пожалуйста, выполните вход.'
-    message_miss_rights = 'У вас нет прав для изменения другого пользователя.'
+    success_message = gettext('Пользователь успешно изменён')
+    message_need_login = gettext(
+        'Вы не авторизованы! Пожалуйста, выполните вход.',
+    )
+    message_miss_rights = gettext(
+        'У вас нет прав для изменения другого пользователя.',
+    )
 
     def test_func(self):
         obj = self.get_object()
@@ -55,8 +60,8 @@ class UserUpdateView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['headline'] = 'Изменение пользователя'
-        context['button_title'] = 'Изменить'
+        context['headline'] = gettext('Изменение пользователя')
+        context['button_title'] = gettext('Изменить')
         return context
 
 
@@ -65,9 +70,13 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = 'users/delete.html'
     success_url = reverse_lazy('index')
     login_url = 'login'
-    success_message = 'Пользователь успешно удалён'
-    message_need_login = 'Вы не авторизованы! Пожалуйста, выполните вход.'
-    message_miss_rights = 'У вас нет прав для изменения другого пользователя.'
+    success_message = gettext('Пользователь успешно удалён')
+    message_need_login = gettext(
+        'Вы не авторизованы! Пожалуйста, выполните вход.',
+    )
+    message_miss_rights = gettext(
+        'У вас нет прав для изменения другого пользователя.',
+    )
 
     def test_func(self):
         obj = self.get_object()
@@ -98,12 +107,12 @@ class UsersView(ListView):
 class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = 'users/login.html'
     success_url = reverse_lazy('index')
-    success_message = 'Вы залогинены'
+    success_message = gettext('Вы залогинены')
 
 
 class UserLogoutView(LogoutView):
     success_url = reverse_lazy('index')
-    success_message = 'Вы разлогинены'
+    success_message = gettext('Вы разлогинены')
 
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)

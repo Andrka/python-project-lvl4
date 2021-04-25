@@ -1,17 +1,17 @@
-{% extends 'statuses/base.html' %}
+{% extends 'users/base.html' %}
 {% load i18n %}
 {% load bootstrap4 %}
 
 {% block title %}
-{% trans 'Удаление пользователя' %}
+{% trans 'Удаление статуса' %}
 {% endblock %}
 
 {% block content %}
 <div class="container wrapper flex-grow-1">
-    <h1>{% trans 'Удаление пользователя' %}</h1>
+    <h1>{% trans 'Удаление статуса' %}</h1>
     <form method="post">
         {% csrf_token %}
-        <p>{% trans 'Вы уверены, что хотите удалить ' %}{{ user.username }}{% trans '?' %}</p>
+        <p>{% trans 'Вы уверены, что хотите удалить ' %}{{ status.name }}{% trans '?' %}</p>
         <button type="submit">{% trans 'Да, удалить' %}</button>
     </form>
 </div>
