@@ -28,9 +28,9 @@ class UserRegisterView(SuccessMessageMixin, CreateView):
 
 
 class UserUpdateView(
-    SuccessMessageMixin,
     LoginRequiredMixin,
     UserPassesTestMixin,
+    SuccessMessageMixin,
     UpdateView,
 ):
     model = User
@@ -79,8 +79,8 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     )
 
     def test_func(self):
-        obj = self.get_object()
-        return obj == self.request.user
+        self.obj = self.get_object()
+        return self.obj == self.request.user
 
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
@@ -91,8 +91,11 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return redirect('login')
 
     def delete(self, request, *args, **kwargs):
-        obj = self.get_object()
-        messages.success(self.request, self.success_message % obj.__dict__)
+        self.obj = self.get_object()
+        messages.success(
+            self.request,
+            self.success_message % self.obj.__dict__,
+        )
         return super(UserDeleteView, self).delete(request, *args, **kwargs)
 
 
