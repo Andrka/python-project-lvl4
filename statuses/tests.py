@@ -1,13 +1,13 @@
 # -*- coding:utf-8 -*-
-from django.contrib.auth.models import User
 from django.test import TestCase
+from users.models import TaskUser
 
 from .models import Status
 
 
 class StatusesTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(
+        self.user = TaskUser.objects.create_user(
             username='user1',
             password='TestTestTest1',
         )

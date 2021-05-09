@@ -25,12 +25,13 @@ class StatusesView(LoginRequiredMixin, ListView):
 
 
 class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Status
     form_class = StatusForm
     login_url = 'login'
     success_url = reverse_lazy('statuses')
     template_name = 'statuses/create.html'
     success_message = gettext('Статус успешно создан')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['headline'] = gettext('Создать статус')
@@ -67,8 +68,14 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
         self.obj = self.get_object()
         try:
             super(StatusDeleteView, self).delete(self.request, *args, **kwargs)
-        except ProtectedError:
-            messages.error(self.request, self.error_message % self.obj.__dict__)
+        except (AttributeError, ProtectedError):
+            messages.error(
+                self.request,
+                self.error_message % self.obj.__dict__,
+            )
         else:
-            messages.success(self.request, self.success_message % self.obj.__dict__)
+            messages.success(
+                self.request,
+                self.success_message % self.obj.__dict__,
+            )
         return redirect(self.success_url)

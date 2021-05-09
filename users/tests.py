@@ -1,12 +1,13 @@
 # -*- coding:utf-8 -*-
 
-from django.contrib.auth.models import User
 from django.test import TestCase
+
+from .models import TaskUser
 
 
 class UsersTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(
+        self.user = TaskUser.objects.create_user(
             username='user1',
             password='TestTestTest1',
         )
@@ -24,7 +25,7 @@ class UsersTest(TestCase):
             },
         )
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(User.objects.count(), 2)
+        self.assertEqual(TaskUser.objects.count(), 2)
 
     def test_update(self):
         response = self.client.post(
@@ -38,9 +39,9 @@ class UsersTest(TestCase):
             },
         )
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(User.objects.count(), 1)
+        self.assertEqual(TaskUser.objects.count(), 1)
 
     def test_delete(self):
         response = self.client.post('/users/1/delete/')
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(User.objects.count(), 0)
+        self.assertEqual(TaskUser.objects.count(), 0)
