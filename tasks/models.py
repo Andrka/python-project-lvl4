@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from django.db import models
 from django.db.models import Model
+from labels.models import Label
 from statuses.models import Status
 from users.models import TaskUser
 
@@ -23,6 +24,17 @@ class Task(Model):
         null=True,
     )
     added_at = models.DateTimeField(auto_now_add=True)
+    label = models.ManyToManyField(
+        Label,
+        through='LabelToTask',
+        through_fields=('task', 'label'),
+        blank=True,
+    )
 
     def __str__(self):
         return self.name
+
+
+class LabelToTask(Model):
+    task = models.ForeignKey(Task, on_delete=models.PROTECT)
+    label = models.ForeignKey(Label, on_delete=models.PROTECT)

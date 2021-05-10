@@ -1,0 +1,18 @@
+{% extends 'labels/base.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block title %}
+{% trans 'Удаление метки' %}
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1>{% trans 'Удаление метки' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{% trans 'Вы уверены, что хотите удалить ' %}{{ label.name }}{% trans '?' %}</p>
+        <button type="submit">{% trans 'Да, удалить' %}</button>
+    </form>
+</div>
+{% endblock %}

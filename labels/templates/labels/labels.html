@@ -1,0 +1,38 @@
+{% extends 'labels/base.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block title %}
+{% trans 'Метки' %}
+{% endblock %}
+
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <h1>{% trans 'Метки' %}</h1>
+    <a href="{% url 'create_label' %}">{% trans 'Создать метку' %}</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">{% trans 'Имя' %}</th>
+                <th scope="col">{% trans 'Дата создания' %}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for label in object_list %}
+            <tr>
+                <td scope="row">{{ label.id }}</th>
+                <td scope="row">{{ label.name }}</td>
+                <td scope="row">{{ label.added_at|date:'d-m-Y H:i' }}</td>
+                <td scope="row">
+                    <a href="{% url 'update_label' pk=label.id %}">{% trans 'Изменить' %}</a>
+                    <br>
+                    <a href="{% url 'delete_label' pk=label.id %}">{% trans 'Удалить' %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

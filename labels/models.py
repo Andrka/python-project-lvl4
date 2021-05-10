@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models import Model
 
 
-class Status(Model):
+class Label(Model):
     name = models.CharField(max_length=100)
     added_at = models.DateTimeField(auto_now_add=True)
 

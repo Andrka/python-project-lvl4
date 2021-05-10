@@ -10,64 +10,64 @@ from django.utils.translation import gettext
 from django.views.generic import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
-from .forms import StatusForm
-from .models import Status
+from .forms import LabelForm
+from .models import Label
 
 
-class StatusesView(LoginRequiredMixin, ListView):
-    model = Status
-    template_name = 'statuses/statuses.html'
-    form_class = StatusForm
+class LabelsView(LoginRequiredMixin, ListView):
+    model = Label
+    template_name = 'labels/labels.html'
+    form_class = LabelForm
     login_url = 'login'
 
     def get_queryset(self):
-        return Status.objects.all().order_by('id')
+        return Label.objects.all().order_by('id')
 
 
-class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    model = Status
-    form_class = StatusForm
+class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Label
+    form_class = LabelForm
     login_url = 'login'
-    success_url = reverse_lazy('statuses')
-    template_name = 'statuses/create.html'
-    success_message = gettext('Статус успешно создан')
+    success_url = reverse_lazy('labels')
+    template_name = 'labels/create.html'
+    success_message = gettext('Метка успешно создана')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['headline'] = gettext('Создать статус')
+        context['headline'] = gettext('Создать метку')
         context['button_title'] = gettext('Создать')
         return context
 
 
-class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    model = Status
-    form_class = StatusForm
-    template_name = 'statuses/create.html'
+class LabelUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Label
+    form_class = LabelForm
+    template_name = 'labels/create.html'
     login_url = 'login'
-    success_url = reverse_lazy('statuses')
-    success_message = gettext('Статус успешно изменён')
+    success_url = reverse_lazy('labels')
+    success_message = gettext('Метка успешно изменена')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['headline'] = gettext('Изменение статуса')
+        context['headline'] = gettext('Изменение метки')
         context['button_title'] = gettext('Изменить')
         return context
 
 
-class StatusDeleteView(LoginRequiredMixin, DeleteView):
-    model = Status
-    template_name = 'statuses/delete.html'
+class LabelDeleteView(LoginRequiredMixin, DeleteView):
+    model = Label
+    template_name = 'labels/delete.html'
     login_url = 'login'
-    success_url = reverse_lazy('statuses')
-    success_message = gettext('Статус успешно удалён')
+    success_url = reverse_lazy('labels')
+    success_message = gettext('Метка успешно удалена')
     error_message = gettext(
-        'Невозможно удалить статус, потому что он используется',
+        'Невозможно удалить метку, потому что она используется',
     )
 
     def delete(self, *args, **kwargs):
         obj = self.get_object()
         try:
-            super(StatusDeleteView, self).delete(self.request, *args, **kwargs)
+            super(LabelDeleteView, self).delete(self.request, *args, **kwargs)
         except ProtectedError:
             messages.error(
                 self.request,

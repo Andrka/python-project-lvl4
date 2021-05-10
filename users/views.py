@@ -99,7 +99,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         obj = self.get_object()
         try:
             super(UserDeleteView, self).delete(self.request, *args, **kwargs)
-        except (AttributeError, ProtectedError):
+        except ProtectedError:
             messages.error(
                 self.request,
                 self.error_message % obj.__dict__,

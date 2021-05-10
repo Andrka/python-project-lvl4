@@ -12,18 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='LabelToTask',
-            fields=[
-                ('id', models.BigAutoField(
-                    auto_created=True,
-                    primary_key=True,
-                    serialize=False,
-                    verbose_name='ID',
-                )),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Task',
+            name='Label',
             fields=[
                 ('id', models.BigAutoField(
                     auto_created=True,
@@ -32,7 +21,6 @@ class Migration(migrations.Migration):
                     verbose_name='ID',
                 )),
                 ('name', models.CharField(max_length=100)),
-                ('description', models.TextField(blank=True, max_length=500)),
                 ('added_at', models.DateTimeField(auto_now_add=True)),
             ],
         ),

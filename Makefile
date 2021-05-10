@@ -2,7 +2,7 @@ install:
 	poetry install
 
 lint:
-	poetry run flake8 statuses task_manager tasks users
+	poetry run flake8 labels statuses task_manager tasks users
 
 test:
 	poetry run coverage run --omit '.venv/*' --source='.' manage.py test
