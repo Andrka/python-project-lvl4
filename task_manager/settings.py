@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'statuses',
     'labels',
     'bootstrap4',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

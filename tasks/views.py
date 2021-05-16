@@ -8,21 +8,19 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext
 from django.views.generic import CreateView, DeleteView, UpdateView
-from django.views.generic.list import ListView
+from django_filters.views import FilterView
 from users.models import TaskUser
 
+from .filters import TasksFilter
 from .forms import TaskForm
 from .models import Task
 
 
-class TasksView(LoginRequiredMixin, ListView):
+class TasksView(LoginRequiredMixin, FilterView):
     model = Task
     template_name = 'tasks/tasks.html'
-    form_class = TaskForm
     login_url = 'login'
-
-    def get_queryset(self):
-        return Task.objects.all().order_by('id')
+    filterset_class = TasksFilter
 
 
 class TasksCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
