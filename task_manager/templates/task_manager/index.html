@@ -8,6 +8,15 @@
 
 {% block content %}
 <div class="container wrapper flex-grow-1">
-    <h1>{% trans 'Привет' %}{% if user.is_authenticated %}{% trans ', ' %}{{ user.username }}{% endif %}{% trans '!' %}</h1>
+    <h1>
+        {% if user.is_authenticated %}
+            {% trans 'Добро пожаловать, ' %}{{ user.username }}!
+        {% endif %}
+        {% if not user.is_authenticated %}
+            {% trans 'Добро пожаловать!' %}
+            <p>
+            {% trans 'Зарегистрируйтесь или войдите в систему.' %}
+        {% endif %}
+    </h1>
 </div>
 {% endblock %}

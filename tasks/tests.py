@@ -3,6 +3,7 @@ from django.test import TestCase
 from statuses.models import Status
 from users.models import TaskUser
 
+from .filters import TasksFilter
 from .models import Task
 
 
@@ -49,3 +50,21 @@ class TasksTest(TestCase):
         response = self.client.post('/tasks/1/delete/')
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Task.objects.count(), 0)
+
+    def test_filter(self):
+        Task.objects.create(
+            name='Test2',
+            description='Test2',
+            status=Status.objects.get(name='Test'),
+            executor=TaskUser.objects.get(username='user1'),
+            creator=self.user,
+        )
+        requested_executor = TaskUser.objects.get(username='user1')
+        qs = Task.objects.all()
+        f = TasksFilter(
+            data={'executor': requested_executor},
+            queryset=qs,
+        )
+        filtrated_tasks = f.qs
+        expected_tasks = Task.objects.filter(executor=requested_executor)
+        self.assertQuerysetEqual(filtrated_tasks, expected_tasks)
