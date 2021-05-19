@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+import rollbar
 from django.contrib import messages
 from dotenv import find_dotenv, load_dotenv
 
@@ -135,6 +136,7 @@ ROLLBAR_ACCESS_TOKEN = os.environ.get('ROLLBAR_ACCESS_TOKEN')
 ROLLBAR = {
     'access_token': ROLLBAR_ACCESS_TOKEN,
     'environment': 'development' if DEBUG else 'production',
-    'branch': 'master',
     'root': BASE_DIR,
 }
+
+rollbar.init(**ROLLBAR)
