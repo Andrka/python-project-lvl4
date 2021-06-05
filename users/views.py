@@ -38,7 +38,7 @@ class UserUpdateView(
     model = TaskUser
     form_class = RegisterForm
     template_name = 'users/register.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('users')
     login_url = 'login'
     success_message = gettext('Пользователь успешно изменён')
     message_need_login = gettext(

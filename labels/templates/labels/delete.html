@@ -11,7 +11,7 @@
     <h1>{% trans 'Удаление метки' %}</h1>
     <form method="post">
         {% csrf_token %}
-        <p>{% trans 'Вы уверены, что хотите удалить ' %}{{ label.name }}{% trans '?' %}</p>
+        <p>{% trans 'Вы уверены, что хотите удалить ' %}{{ label.name }}'?'</p>
         <button type="submit">{% trans 'Да, удалить' %}</button>
     </form>
 </div>
