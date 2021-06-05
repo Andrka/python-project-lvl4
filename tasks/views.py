@@ -7,13 +7,18 @@ from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext
-from django.views.generic import CreateView, DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView, DetailView, UpdateView
 from django_filters.views import FilterView
 from users.models import TaskUser
 
 from .filters import TasksFilter
 from .forms import TaskForm
 from .models import Task
+
+
+class TasksDetailView(LoginRequiredMixin, DetailView):
+    model = Task
+    template_name = 'tasks/detail.html'
 
 
 class TasksView(LoginRequiredMixin, FilterView):
