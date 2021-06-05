@@ -9,7 +9,6 @@ class Label(Model):
     name = models.CharField(
         max_length=100,
         verbose_name=gettext('Имя'),
-        help_text=gettext('Имя'),
     )
     added_at = models.DateTimeField(auto_now_add=True)
 

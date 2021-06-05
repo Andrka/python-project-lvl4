@@ -35,10 +35,11 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="id_label">{% trans 'Метка' %}</label>
+          <label for="id_labels">{% trans 'Метка' %}</label>
           <div class="mr-3 ml-2">
-            <select name="label" class="form-control" title="" id="id_label">
-              {% for label in filter.form.label %}
+            <select name="labels" class="form-control" title="" id="id_labels">
+              <option>----------</option>
+              {% for label in filter.form.labels %}
                 {{ label }}
               {% endfor %}
             </select>

@@ -3,7 +3,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext
@@ -67,7 +66,7 @@ class TasksDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = 'tasks/delete.html'
     success_url = reverse_lazy('tasks')
     login_url = 'login'
-    success_message = gettext('Задача успешно удалёна')
+    success_message = gettext('Задача успешно удалена')
     message_need_login = gettext(
         'Вы не авторизованы! Пожалуйста, выполните вход.',
     )
@@ -77,7 +76,7 @@ class TasksDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         obj = self.get_object()
-        return obj.id == self.request.user.id
+        return obj.creator.id == self.request.user.id
 
     def handle_no_permission(self):
         if self.request.user.is_authenticated:
@@ -89,16 +88,9 @@ class TasksDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def delete(self, *args, **kwargs):
         obj = self.get_object()
-        try:
-            super(TasksDeleteView, self).delete(self.request, *args, **kwargs)
-        except ProtectedError:
-            messages.error(
-                self.request,
-                self.error_message % obj.__dict__,
-            )
-        else:
-            messages.success(
+        super(TasksDeleteView, self).delete(self.request, *args, **kwargs)
+        messages.success(
                 self.request,
                 self.success_message % obj.__dict__,
-            )
+        )
         return redirect(self.success_url)

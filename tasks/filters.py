@@ -19,7 +19,7 @@ class TasksFilter(FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'executor', 'label', 'self_task']
+        fields = ['status', 'executor', 'labels', 'self_task']
         filter_overrides = {
             BooleanFilter: {
                 'filter_class': BooleanFilter,

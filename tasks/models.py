@@ -11,13 +11,11 @@ class Task(Model):
     name = models.CharField(
         max_length=100,
         verbose_name=gettext('Имя'),
-        help_text=gettext('Имя'),
     )
     description = models.TextField(
         max_length=500,
         blank=True,
         verbose_name=gettext('Описание'),
-        help_text=gettext('Описание'),
     )
     status = models.ForeignKey(
         Status,
@@ -40,7 +38,7 @@ class Task(Model):
         null=True,
     )
     added_at = models.DateTimeField(auto_now_add=True)
-    label = models.ManyToManyField(
+    labels = models.ManyToManyField(
         Label,
         through='LabelToTask',
         through_fields=('task', 'label'),
@@ -53,5 +51,5 @@ class Task(Model):
 
 
 class LabelToTask(Model):
-    task = models.ForeignKey(Task, on_delete=models.PROTECT)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
     label = models.ForeignKey(Label, on_delete=models.PROTECT)

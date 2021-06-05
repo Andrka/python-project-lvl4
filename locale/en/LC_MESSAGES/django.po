@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-05 17:58+0300\n"
+"POT-Creation-Date: 2021-06-05 21:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,10 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: labels/models.py:11 labels/models.py:12
-#: labels/templates/labels/labels.html:17 statuses/models.py:11
-#: statuses/models.py:12 statuses/templates/statuses/statuses.html:17
-#: tasks/models.py:13 tasks/models.py:14 tasks/templates/tasks/tasks.html:64
+#: labels/models.py:11 labels/templates/labels/labels.html:17
+#: statuses/models.py:11 statuses/templates/statuses/statuses.html:17
+#: tasks/models.py:13 tasks/templates/tasks/tasks.html:65
 msgid "Имя"
 msgstr "Name"
 
@@ -42,7 +41,8 @@ msgid "Да, удалить"
 msgstr "Yes, delete"
 
 #: labels/templates/labels/labels.html:6 labels/templates/labels/labels.html:11
-#: tasks/models.py:48 templates/base.html:31
+#: tasks/models.py:46 tasks/templates/tasks/detail.html:38
+#: templates/base.html:31
 msgid "Метки"
 msgstr "Labels"
 
@@ -52,20 +52,22 @@ msgstr "Create label"
 
 #: labels/templates/labels/labels.html:18
 #: statuses/templates/statuses/statuses.html:18
-#: tasks/templates/tasks/tasks.html:68 users/templates/users/users.html:19
+#: tasks/templates/tasks/detail.html:33 tasks/templates/tasks/tasks.html:69
+#: users/templates/users/users.html:19
 msgid "Дата создания"
 msgstr "Creation data"
 
 #: labels/templates/labels/labels.html:29 labels/views.py:53
 #: statuses/templates/statuses/statuses.html:29 statuses/views.py:53
-#: tasks/templates/tasks/tasks.html:82 tasks/views.py:56
-#: users/templates/users/users.html:31 users/views.py:66
+#: tasks/templates/tasks/detail.html:48 tasks/templates/tasks/tasks.html:83
+#: tasks/views.py:60 users/templates/users/users.html:31 users/views.py:66
 msgid "Изменить"
 msgstr "Change"
 
 #: labels/templates/labels/labels.html:31
 #: statuses/templates/statuses/statuses.html:31
-#: tasks/templates/tasks/tasks.html:84 users/templates/users/users.html:33
+#: tasks/templates/tasks/detail.html:50 tasks/templates/tasks/tasks.html:85
+#: users/templates/users/users.html:33
 msgid "Удалить"
 msgstr "Delete"
 
@@ -73,7 +75,7 @@ msgstr "Delete"
 msgid "Метка успешно создана"
 msgstr "Label successfully created"
 
-#: labels/views.py:38 statuses/views.py:38 tasks/views.py:37
+#: labels/views.py:38 statuses/views.py:38 tasks/views.py:41
 msgid "Создать"
 msgstr "Create"
 
@@ -144,29 +146,38 @@ msgstr "Welcome!"
 msgid "Зарегистрируйтесь или войдите в систему."
 msgstr "Sign up or login."
 
-#: tasks/models.py:19 tasks/models.py:20
+#: tasks/models.py:18
 msgid "Описание"
 msgstr "Description"
 
-#: tasks/models.py:26 tasks/templates/tasks/tasks.html:18
-#: tasks/templates/tasks/tasks.html:65
+#: tasks/models.py:24 tasks/templates/tasks/detail.html:29
+#: tasks/templates/tasks/tasks.html:18 tasks/templates/tasks/tasks.html:66
 msgid "Статус"
 msgstr "Status"
 
-#: tasks/models.py:34 tasks/templates/tasks/tasks.html:28
-#: tasks/templates/tasks/tasks.html:67
+#: tasks/models.py:32 tasks/templates/tasks/detail.html:25
+#: tasks/templates/tasks/tasks.html:28 tasks/templates/tasks/tasks.html:68
 msgid "Исполнитель"
 msgstr "Executor"
 
 #: tasks/templates/tasks/delete.html:6 tasks/templates/tasks/delete.html:11
+#: tasks/templates/tasks/detail.html:6
 msgid "Удаление задачи"
 msgstr "Task deletion"
+
+#: tasks/templates/tasks/detail.html:12
+msgid "Просмотр задачи"
+msgstr "Task details"
+
+#: tasks/templates/tasks/detail.html:21 tasks/templates/tasks/tasks.html:67
+msgid "Автор"
+msgstr "Creator"
 
 #: tasks/templates/tasks/tasks.html:11 templates/base.html:34
 msgid "Задачи"
 msgstr "Tasks"
 
-#: tasks/templates/tasks/tasks.html:12 tasks/views.py:36
+#: tasks/templates/tasks/tasks.html:12 tasks/views.py:40
 msgid "Создать задачу"
 msgstr "Create task"
 
@@ -174,35 +185,31 @@ msgstr "Create task"
 msgid "Метка"
 msgstr "Label"
 
-#: tasks/templates/tasks/tasks.html:51
+#: tasks/templates/tasks/tasks.html:52
 msgid "Только свои задачи"
 msgstr "Only my tasks"
 
-#: tasks/templates/tasks/tasks.html:66
-msgid "Автор"
-msgstr "Creator"
-
-#: tasks/views.py:32
+#: tasks/views.py:36
 msgid "Задача успешно создана"
 msgstr "Task successfully created"
 
-#: tasks/views.py:51
+#: tasks/views.py:55
 msgid "Задача успешно изменена"
 msgstr "Task successfully changed"
 
-#: tasks/views.py:55
+#: tasks/views.py:59
 msgid "Изменение задачи"
 msgstr "Task changing"
 
-#: tasks/views.py:65
-msgid "Задача успешно удалёна"
+#: tasks/views.py:69
+msgid "Задача успешно удалена"
 msgstr "Task successfully deleted"
 
-#: tasks/views.py:67 users/views.py:45 users/views.py:77
+#: tasks/views.py:71 users/views.py:45 users/views.py:77
 msgid "Вы не авторизованы! Пожалуйста, выполните вход."
 msgstr "You are not authorized! Please sign in."
 
-#: tasks/views.py:70
+#: tasks/views.py:74
 msgid "Задачу может удалить только её автор"
 msgstr "A task can only be deleted by its author"
 
